@@ -23,10 +23,8 @@ class KnightsTravails {
       return;
     }
     const graph = this.createGraph();
-
-    console.log(
-      `Start: ${start}; \n End: ${end};\n Graph: ${JSON.stringify(graph)}`
-    );
+    const path = this.findPath(start, end, graph);
+    console.log(`Start: ${start}; \n End: ${end};\n}`);
   }
 
   createGraph() {
@@ -38,11 +36,37 @@ class KnightsTravails {
       }
       graph.push(row);
     }
-    console.log("gr", graph[1][2]);
-
     return graph;
+  }
+
+  findPath(start, end, graph) {
+    let visited = [];
+    let queque = [[start]]; // Note: Each element of the queue is now an array representing a path
+    let path = [];
+
+    while (queque.length > 0) {
+      let currentPath = queque.shift();
+      let position = currentPath[currentPath.length - 1];
+
+      if (position[0] === end[0] && position[1] === end[1]) {
+        console.log("Path:", currentPath);
+        return currentPath;
+      }
+
+      if (!visited.some((v) => v[0] === position[0] && v[1] === position[1])) {
+        visited.push(position);
+
+        for (const pos of this.possibleMoves) {
+          let next = [position[0] + pos[0], position[1] + pos[1]];
+          let newPath = [...currentPath, next];
+          queque.push(newPath);
+        }
+      }
+    }
+
+    return null; // If the loop completes without finding the destination, there's no path
   }
 }
 
 const game = new KnightsTravails();
-game.knightsMove([3, 3], [4, 1]);
+game.knightsMove([3, 3], [7, 7]);

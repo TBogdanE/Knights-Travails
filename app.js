@@ -86,9 +86,10 @@ class KnightsTravails {
 const getPath = (start, end) => {
   let game = new KnightsTravails();
   let path = game.knightsMove(start, end);
+  console.log(path);
   return path;
 };
 //const game = new KnightsTravails();
 //game.knightsMove([3, 3], [3, 0]);
 
-export { KnightsTravails, getPath };
+export { getPath };

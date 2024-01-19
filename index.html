@@ -8,7 +8,30 @@
   </head>
   <body>
     <div id="page-title">Knights Travails</div>
+    <div id="page-input">
+      <form>
+        <label for="start">Start:</label>
+        <input
+          type="text"
+          id="start-input"
+          class="form-input"
+          name="start"
+          required
+        />
+
+        <label for="end">End:</label>
+        <input
+          type="text"
+          id="end-input"
+          class="form-input"
+          name="end"
+          required
+        />
+
+        <input type="submit" id="input-btn" value="Submit" />
+      </form>
+    </div>
     <div id="game-board"></div>
-    <script src="appUi.js"></script>
+    <script type="module" src="appUi.js"></script>
   </body>
 </html>

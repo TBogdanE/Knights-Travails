@@ -1,8 +1,13 @@
-import { KnightsTravails } from "./app.js";
+import { getPath } from "./app.js";
 
 const renderBoard = () => {
   let color = "black";
   const boardBox = document.getElementById("game-board");
+
+  while (boardBox.firstChild) {
+    boardBox.removeChild(boardBox.firstChild);
+  }
+
   for (let i = 0; i < 8; i++) {
     color = color === "black" ? "white" : "black";
     for (let j = 0; j < 8; j++) {
@@ -25,7 +30,9 @@ const submitBtn = () => {
 
   submitBtn.addEventListener("click", (event) => {
     event.preventDefault();
-    updateMoves(getInput().startPos, getInput().endPos);
+    let path = getPath(getInput().startPos, getInput().endPos);
+    renderBoard();
+    updateMoves(path);
   });
 };
 
@@ -37,9 +44,21 @@ const getInput = () => {
   return { startPos, endPos };
 };
 
-const updateMoves = (start, end) => {
-  let game = new KnightsTravails();
-  game.knightsMove(start, end);
+const updateMoves = (path) => {
+  let counter = 0;
+  for (let pos of path) {
+    let box = document.getElementById(`${pos[0]}${pos[1]}`);
+    if (counter === 0) {
+      box.textContent = "Start";
+      counter += 1;
+    } else if (counter === path.length - 1) {
+      box.textContent = "End";
+    } else {
+      box.textContent = counter;
+      counter += 1;
+    }
+    box.style.backgroundColor = "red";
+  }
 };
 
 document.addEventListener("DOMContentLoaded", () => {

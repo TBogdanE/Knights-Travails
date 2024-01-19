@@ -29,6 +29,7 @@ class KnightsTravails {
     //starts the searching of the path
     const path = this.findPath(start, end);
     console.log(`Start: ${start}; \n End: ${end};\n}`);
+    return path;
   }
 
   //searches fotr the path
@@ -50,8 +51,10 @@ class KnightsTravails {
 
       //check's if the actual position is the searched position
       if (position[0] === end[0] && position[1] === end[1]) {
+        this.path = currentPath;
         console.log("Path:", currentPath);
-        return currentPath;
+        console.log("this.path", this.path);
+        return this.path;
       }
 
       //check's if the position wasn't already checked
@@ -80,5 +83,12 @@ class KnightsTravails {
   }
 }
 
-const game = new KnightsTravails();
-game.knightsMove([3, 3], [3, 3]);
+const getPath = (start, end) => {
+  let game = new KnightsTravails();
+  let path = game.knightsMove(start, end);
+  return path;
+};
+//const game = new KnightsTravails();
+//game.knightsMove([3, 3], [3, 0]);
+
+export { KnightsTravails, getPath };

@@ -42,6 +42,7 @@ class KnightsTravails {
       let currentPath = queque.shift();
       let position = currentPath[currentPath.length - 1];
 
+      //checks if the start position is the same as end position
       if (start[0] === end[0] && start[1] === end[1]) {
         console.log("The start position is the same with the end one");
         return start;
@@ -59,11 +60,13 @@ class KnightsTravails {
 
         //for all the elements in the possible moves array, will create new paths
         for (const pos of this.possibleMoves) {
+          //creates the next position based on the possible moves
           let next = [position[0] + pos[0], position[1] + pos[1]];
 
+          //checks if the new position is in the board space
           if (next[0] >= 0 && next[0] < 8 && next[1] >= 0 && next[1] < 8) {
             let newPath = [...currentPath, next];
-
+            //pushes the new path to the queque
             queque.push(newPath);
             console.log(
               `...currentPath: ${currentPath} \n next: ${next} = [${position[0]}, ${position[1]}] + [${pos[0]} ${pos[1]}] \n New path: ${newPath} \n\n `

@@ -44,21 +44,23 @@ const getInput = () => {
   return { startPos, endPos };
 };
 
-const updateMoves = (path) => {
-  let counter = 0;
-  for (let pos of path) {
-    let box = document.getElementById(`${pos[0]}${pos[1]}`);
-    if (counter === 0) {
-      box.textContent = "Start";
-      counter += 1;
-    } else if (counter === path.length - 1) {
-      box.textContent = "End";
-    } else {
-      box.textContent = counter;
-      counter += 1;
-    }
-    box.style.backgroundColor = "red";
+const updateMoves = (path, index = 0) => {
+  let pos = path[index];
+
+  let box = document.getElementById(`${pos[0]}${pos[1]}`);
+  if (index === 0) {
+    box.textContent = "Start";
+  } else if (index === path.length - 1) {
+    box.textContent = "End";
+  } else {
+    box.textContent = index;
   }
+
+  box.style.backgroundColor = "red";
+
+  setTimeout(() => {
+    updateMoves(path, index + 1);
+  }, 500); // 0.5 second delay
 };
 
 document.addEventListener("DOMContentLoaded", () => {

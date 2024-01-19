@@ -1,0 +1,20 @@
+{
+  "name": "knights-travails",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TBogdanE/Knights-Travails.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TBogdanE/Knights-Travails/issues"
+  },
+  "homepage": "https://github.com/TBogdanE/Knights-Travails#readme"
+}

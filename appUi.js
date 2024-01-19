@@ -1,5 +1,8 @@
 import { getPath } from "./app.js";
 
+const COLOR1 = "rgb(254, 252, 251)";
+const COLOR2 = "rgb(3, 64, 120)";
+
 const renderBoard = () => {
   let color = "black";
   const boardBox = document.getElementById("game-board");
@@ -9,9 +12,9 @@ const renderBoard = () => {
   }
 
   for (let i = 0; i < 8; i++) {
-    color = color === "black" ? "white" : "black";
+    color = color === COLOR1 ? COLOR2 : COLOR1;
     for (let j = 0; j < 8; j++) {
-      color = color === "black" ? "white" : "black";
+      color = color === COLOR1 ? COLOR2 : COLOR1;
       boardBox.appendChild(createBox(i, j, color));
     }
   }
@@ -56,7 +59,7 @@ const updateMoves = (path, index = 0) => {
     box.textContent = index;
   }
 
-  box.style.backgroundColor = "red";
+  box.style.backgroundColor = "rgb(240, 225, 0)";
 
   setTimeout(() => {
     updateMoves(path, index + 1);
